@@ -1,5 +1,7 @@
 import unittest
 from htmlnode import HTMLNode
+from textnode import TextNode, TextType
+from htmlnode import text_node_to_html_node
 
 class TestHTMLNode(unittest.TestCase):
     def test_props_to_html_with_one_prop(self):
@@ -16,3 +18,9 @@ class TestHTMLNode(unittest.TestCase):
         node = HTMLNode(tag="a")
         result = node.props_to_html()
         self.assertEqual(result, "")
+    
+    def test_text(self):
+        node = TextNode("This is a text node", TextType.TEXT)
+        html_node = text_node_to_html_node(node)
+        self.assertEqual(html_node.tag, None)
+        self.assertEqual(html_node.value, "This is a text node")
