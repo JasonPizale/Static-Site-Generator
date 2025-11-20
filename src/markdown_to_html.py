@@ -34,7 +34,7 @@ def markdown_to_html_node(markdown: str) -> ParentNode:
             text = " ".join(s for s in (ln.strip() for ln in lines) if s)
             node = ParentNode("blockquote", inline_children(text))
         
-        elif block_type == BlockType.UNORDERED_LIST:
+        elif block_type == BlockType.ULIST:
             items = []
             for ln in block.split("\n"):
                 ln = ln.strip()
@@ -43,7 +43,7 @@ def markdown_to_html_node(markdown: str) -> ParentNode:
                     items.append(ParentNode("li", inline_children(item_text)))
             node = ParentNode("ul", items)
         
-        elif block_type == BlockType.ORDERED_LIST:
+        elif block_type == BlockType.OLIST:
             items = []
             for ln in block.split("\n"):
                 ln = ln.strip()
